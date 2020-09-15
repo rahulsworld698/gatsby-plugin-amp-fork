@@ -94,13 +94,30 @@ export const onPreRenderHTML = (
             ) : (
                 <Fragment />
             ),
-            ...headComponents.filter(
-                (x) =>
-                    x.type !== 'style' &&
-                    (x.type !== 'script' ||
-                        x.props.type === 'application/ld+json') &&
-                    x.key !== 'TypographyStyle'
-            ),
+            ...headComponents
+                .filter(
+                    (component) =>
+                        component.type !== 'style' &&
+                        !(
+                            component.type === 'script' &&
+                            component.props.type !== 'application/ld+json'
+                        ) &&
+                        component.key !== 'TypographyStyle' &&
+                        !(
+                            component.type === 'link' &&
+                            component.props.rel === 'preload' &&
+                            ['script', 'fetch'].includes(component.props.as)
+                        )
+                )
+                .map((component) => {
+                    if (component.type === 'style') {
+                        component.props.dangerouslySetInnerHTML.__html = component.props.dangerouslySetInnerHTML.__html.replace(
+                            /\!important/g,
+                            ''
+                        );
+                    }
+                    return component;
+                }),
         ]);
         replacePreBodyComponents([
             ...preBodyComponents.filter(
