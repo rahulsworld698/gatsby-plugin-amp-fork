@@ -1,6 +1,6 @@
 {
-  "name": "gatsby-plugin-amp",
-  "version": "0.2.2",
+  "name": "gatsby-plugin-amp-fork",
+  "version": "0.2.3",
   "description": "A gatsby plugin for scaffolding AMP pages",
   "main": "index.js",
   "scripts": {
@@ -17,10 +17,10 @@
     "url": "https://github.com/jafaircl/gatsby-plugin-amp/issues"
   },
   "dependencies": {
-    "jsdom": "^13.0.0",
+    "jsdom": "16.4.0",
     "lodash.flattendeep": "^4.4.0",
     "minimatch": "^3.0.4",
-    "react": "^16.6.1"
+    "react": "^16.13.1"
   },
   "keywords": [
     "gatsby",
@@ -30,8 +30,8 @@
     "accelerated-mobile-pages"
   ],
   "devDependencies": {
-    "babel-preset-gatsby-package": "^0.1.2",
     "@babel/cli": "^7.1.5",
-    "@babel/core": "^7.1.5"
+    "@babel/core": "^7.1.5",
+    "babel-preset-gatsby-package": "0.5.2"
   }
 }
