@@ -39,16 +39,18 @@ export const onPreRenderHTML = (
     const postBodyComponents = getPostBodyComponents();
     const isAmp = pathname && pathname.indexOf(pathIdentifier) > -1;
     if (isAmp) {
-        const styles = headComponents.reduce((str, x) => {
-            if (x.type === 'style') {
-                if (x.props.dangerouslySetInnerHTML) {
-                    str += x.props.dangerouslySetInnerHTML.__html;
+        const styles = headComponents
+            .reduce((str, x) => {
+                if (x.type === 'style') {
+                    if (x.props.dangerouslySetInnerHTML) {
+                        str += x.props.dangerouslySetInnerHTML.__html;
+                    }
+                } else if (x.key && x.key === 'TypographyStyle') {
+                    str = `${x.props.typography.toString()}${str}`;
                 }
-            } else if (x.key && x.key === 'TypographyStyle') {
-                str = `${x.props.typography.toString()}${str}`;
-            }
-            return str;
-        }, '');
+                return str;
+            }, '')
+            .replace(/\!important/g, '');
         replaceHeadComponents([
             <script async src="https://cdn.ampproject.org/v0.js" />,
             <style
@@ -94,30 +96,20 @@ export const onPreRenderHTML = (
             ) : (
                 <Fragment />
             ),
-            ...headComponents
-                .filter(
-                    (component) =>
-                        component.type !== 'style' &&
-                        !(
-                            component.type === 'script' &&
-                            component.props.type !== 'application/ld+json'
-                        ) &&
-                        component.key !== 'TypographyStyle' &&
-                        !(
-                            component.type === 'link' &&
-                            component.props.rel === 'preload' &&
-                            ['script', 'fetch'].includes(component.props.as)
-                        )
-                )
-                .map((component) => {
-                    if (component.type === 'style') {
-                        component.props.dangerouslySetInnerHTML.__html = component.props.dangerouslySetInnerHTML.__html.replace(
-                            /\!important/g,
-                            ''
-                        );
-                    }
-                    return component;
-                }),
+            ...headComponents.filter(
+                (component) =>
+                    component.type !== 'style' &&
+                    !(
+                        component.type === 'script' &&
+                        component.props.type !== 'application/ld+json'
+                    ) &&
+                    component.key !== 'TypographyStyle' &&
+                    !(
+                        component.type === 'link' &&
+                        component.props.rel === 'preload' &&
+                        ['script', 'fetch'].includes(component.props.as)
+                    )
+            ),
         ]);
         replacePreBodyComponents([
             ...preBodyComponents.filter(
