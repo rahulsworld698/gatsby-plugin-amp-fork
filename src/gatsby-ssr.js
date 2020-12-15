@@ -215,6 +215,9 @@ export const replaceRenderer = (
     { bodyComponent, replaceBodyHTMLString, setHeadComponents, pathname },
     { pathIdentifier = '/amp/' }
 ) => {
+    const disallowAmpAttributes ={
+        image: ['loading'],
+    }
     const defaults = {
         image: {
             width: 640,
@@ -250,11 +253,15 @@ export const replaceRenderer = (
                 ampImage = document.createElement('amp-img');
             }
             const attributes = Object.keys(image.attributes);
-            const includedAttributes = attributes.map((key) => {
-                const attribute = image.attributes[key];
-                ampImage.setAttribute(attribute.name, attribute.value);
-                return attribute.name;
-            });
+            const includedAttributes = attributes
+                .map((key) => {
+                    return image.attributes[key];
+                })
+                .filter((attribute) => !disallowAmpAttributes.image.includes(attribute.name))
+                .map((attribute) => {
+                    ampImage.setAttribute(attribute.name, attribute.value);
+                    return attribute.name;
+                });
             Object.keys(defaults.image).forEach((key) => {
                 if (
                     includedAttributes &&
