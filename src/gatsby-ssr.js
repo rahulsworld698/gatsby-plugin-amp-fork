@@ -1,6 +1,5 @@
 import React, { Fragment } from 'react';
 import { renderToString } from 'react-dom/server';
-import { Minimatch } from 'minimatch';
 import flattenDeep from 'lodash.flattendeep';
 const JSDOM = eval('require("jsdom")').JSDOM;
 const minimatch = require('minimatch');
@@ -215,9 +214,9 @@ export const replaceRenderer = (
     { bodyComponent, replaceBodyHTMLString, setHeadComponents, pathname },
     { pathIdentifier = '/amp/' }
 ) => {
-    const disallowAmpAttributes ={
+    const disallowAmpAttributes = {
         image: ['loading'],
-    }
+    };
     const defaults = {
         image: {
             width: 640,
@@ -257,7 +256,10 @@ export const replaceRenderer = (
                 .map((key) => {
                     return image.attributes[key];
                 })
-                .filter((attribute) => !disallowAmpAttributes.image.includes(attribute.name))
+                .filter(
+                    (attribute) =>
+                        !disallowAmpAttributes.image.includes(attribute.name)
+                )
                 .map((attribute) => {
                     ampImage.setAttribute(attribute.name, attribute.value);
                     return attribute.name;
