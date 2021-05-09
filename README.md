@@ -189,14 +189,14 @@ Don't forget to update the meta viewport tag value from its initial to the requi
 
 While it is preferable to create AMP-specific templates, there may be situations where an image, iframe or some other element can't be modified. To cover these cases, the plugin will attempt to convert certain tags to their AMP equivalent.
 
-| HTML Tag       | AMP Tag           | Status                     | Issue |
-|----------------|-------------------|----------------------------|-------|
-| `img`          | `amp-img`         | Completed                  |       |
-| `img (.gif)`   | `amp-anim`        | Completed                  |       |
-| `iframe`       | `amp-iframe`      | Completed                  |       |
-| `audio`        | `amp-audio`       | Planned, Not Started       |       |
-| `video`        | `amp-video`       | Planned, Not Started       |       |
-| YouTube        | `amp-youtube`     | Completed                  |       |
-| Facebook       | `amp-facebook`    | Planned, Not Started       |       |
-| Instagram      | `amp-instagram`   | Planned, Not Started       |       |
-| Twitter        | `amp-twitter`     | Completed                  |       |
+| HTML Tag     | AMP Tag         | Status               | Issue |
+| ------------ | --------------- | -------------------- | ----- |
+| `img`        | `amp-img`       | Completed            |       |
+| `img (.gif)` | `amp-anim`      | Completed            |       |
+| `iframe`     | `amp-iframe`    | Completed            |       |
+| `audio`      | `amp-audio`     | Planned, Not Started |       |
+| `video`      | `amp-video`     | Planned, Not Started |       |
+| YouTube      | `amp-youtube`   | Completed            |       |
+| Facebook     | `amp-facebook`  | Planned, Not Started |       |
+| Instagram    | `amp-instagram` | Planned, Not Started |       |
+| Twitter      | `amp-twitter`   | Completed            |       |

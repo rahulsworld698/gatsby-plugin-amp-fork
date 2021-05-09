@@ -11,13 +11,13 @@
     },
     "author": "Jonathan Faircloth",
     "license": "MIT",
-    "homepage": "https://github.com/nonjene/gatsby-plugin-amp#readme",
-    "repository": "https://github.com/nonjene/gatsby-plugin-amp",
+    "homepage": "https://github.com/nonjene/gatsby-plugin-amp-fork#readme",
+    "repository": "https://github.com/nonjene/gatsby-plugin-amp-fork",
     "bugs": {
-        "url": "https://github.com/nonjene/gatsby-plugin-amp/issues"
+        "url": "https://github.com/nonjene/gatsby-plugin-amp-fork/issues"
     },
     "dependencies": {
-        "jsdom": "16.4.0",
+        "jsdom": "16.5.3",
         "lodash.flattendeep": "^4.4.0",
         "minimatch": "^3.0.4"
     },
@@ -33,9 +33,9 @@
         "accelerated-mobile-pages"
     ],
     "devDependencies": {
-        "@babel/cli": "^7.1.5",
-        "@babel/core": "^7.1.5",
-        "babel-preset-gatsby-package": "0.5.2",
+        "@babel/cli": "^7.13.16",
+        "@babel/core": "^7.14.0",
+        "babel-preset-gatsby-package": "1.4.0",
         "react": "^17.0.2"
     }
 }
