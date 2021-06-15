@@ -1,0 +1,58 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`onPreRenderHTML - replaceHeadComponents when is amp, should append some amp script tag 1`] = `
+Array [
+  Array [
+    Array [
+      <script
+        async={true}
+        src="https://cdn.ampproject.org/v0.js"
+      />,
+      <style
+        amp-boilerplate=""
+        dangerouslySetInnerHTML={
+          Object {
+            "__html": "body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}",
+          }
+        }
+      />,
+      <noscript>
+        <style
+          amp-boilerplate=""
+          dangerouslySetInnerHTML={
+            Object {
+              "__html": "body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}",
+            }
+          }
+        />
+      </noscript>,
+      <style
+        amp-custom=""
+        dangerouslySetInnerHTML={
+          Object {
+            "__html": "",
+          }
+        }
+      />,
+      <script
+        async={true}
+        custom-element="amp-analytics"
+        src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"
+      />,
+    ],
+  ],
+]
+`;
+
+exports[`onPreRenderHTML - replaceHeadComponents when is not amp & set excludePath to ["/foo/**"] when pathname is \`/fooo/bar\`, should call replaceHeadComponents 1`] = `
+Array [
+  Array [
+    Array [
+      <link
+        href="https://foo.com/fooo/bar/amp/"
+        rel="amphtml"
+      />,
+    ],
+  ],
+]
+`;
