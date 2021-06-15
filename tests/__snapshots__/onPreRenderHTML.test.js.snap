@@ -44,12 +44,12 @@ Array [
 ]
 `;
 
-exports[`onPreRenderHTML - replaceHeadComponents when is not amp & set excludePath to ["/foo/**"] when pathname is \`/fooo/bar\`, should call replaceHeadComponents 1`] = `
+exports[`onPreRenderHTML - replaceHeadComponents when is not amp & set excludePath to ["/foo/**"] when pathname is \`/baz/bar\`, should call replaceHeadComponents 1`] = `
 Array [
   Array [
     Array [
       <link
-        href="https://foo.com/fooo/bar/amp/"
+        href="https://foo.com/baz/bar/amp/"
         rel="amphtml"
       />,
     ],

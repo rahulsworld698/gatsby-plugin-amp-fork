@@ -57,6 +57,30 @@ describe('onPreRenderHTML - replaceHeadComponents', () => {
             expect(replaceHeadComponents).not.toBeCalled();
         });
 
+        it('when pathname is `/baz/foo/bar`, should call replaceHeadComponents', () => {
+            onPreRenderHTML(
+                ...mockOption({
+                    pathname: '/baz/foo/bar',
+                })
+            );
+            expect(replaceHeadComponents).toBeCalled();
+        });
+
+        it('when pathname is `/baz/bar`, should call replaceHeadComponents', () => {
+            onPreRenderHTML(
+                ...mockOption({
+                    pathname: '/baz/bar',
+                })
+            );
+            expect(replaceHeadComponents.mock.calls).toMatchSnapshot();
+        });
+    });
+
+    describe('when is not amp & set excludePath to ["**/foo/**"]', () => {
+        const mockOption = mockParams({
+            excludedPaths: ['**/foo/**'],
+        });
+
         it('when pathname is `/foo/bar`, should not call replaceHeadComponents', () => {
             onPreRenderHTML(
                 ...mockOption({
@@ -66,13 +90,22 @@ describe('onPreRenderHTML - replaceHeadComponents', () => {
             expect(replaceHeadComponents).not.toBeCalled();
         });
 
-        it('when pathname is `/fooo/bar`, should call replaceHeadComponents', () => {
+        it('when pathname is `/baz/foo/bar`, should not call replaceHeadComponents', () => {
             onPreRenderHTML(
                 ...mockOption({
-                    pathname: '/fooo/bar',
+                    pathname: '/baz/foo/bar',
                 })
             );
-            expect(replaceHeadComponents.mock.calls).toMatchSnapshot();
+            expect(replaceHeadComponents).not.toBeCalled();
+        });
+
+        it('when pathname is `/baz/bar`, should call replaceHeadComponents', () => {
+            onPreRenderHTML(
+                ...mockOption({
+                    pathname: '/baz/bar',
+                })
+            );
+            expect(replaceHeadComponents).toBeCalled();
         });
     });
 });
