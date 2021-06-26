@@ -330,6 +330,8 @@ const replaceRenderer = ({
 
           if (splitedWidth[splitedWidth.length - 1] === '%') {
             ampIframe.setAttribute(attribute.name, defaults.iframe['width']);
+          } else {
+            ampIframe.setAttribute(attribute.name, attribute.value);
           }
         } else {
           ampIframe.setAttribute(attribute.name, attribute.value);
@@ -343,6 +345,13 @@ const replaceRenderer = ({
         }
       });
       iframe.parentNode.replaceChild(ampIframe, iframe);
+    }); // remove twitter and instagram script from amp page
+
+    const scripts = [].slice.call(document.getElementsByTagName('script'));
+    scripts.forEach(script => {
+      if (script && script.src && (script.src == 'https://platform.twitter.com/widgets.js' || script.src == '//www.instagram.com/embed.js')) {
+        script.parentNode.removeChild(script);
+      }
     });
     replaceBodyHTMLString(document.body.children[0].outerHTML);
   }
