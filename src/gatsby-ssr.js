@@ -107,6 +107,9 @@ export const onPreRenderHTML = (
                         component.type === 'link' &&
                         component.props.rel === 'preload' &&
                         ['script', 'fetch'].includes(component.props.as)
+                    ) &&
+                    !(
+                        component.type === 'noscript'
                     )
             ),
         ]);

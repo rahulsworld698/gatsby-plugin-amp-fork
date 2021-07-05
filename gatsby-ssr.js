@@ -85,7 +85,7 @@ const onPreRenderHTML = ({
       async: true,
       "custom-element": "amp-analytics",
       src: "https://cdn.ampproject.org/v0/amp-analytics-0.1.js"
-    }) : /*#__PURE__*/_react.default.createElement(_react.Fragment, null), ...headComponents.filter(component => component.type !== 'style' && !(component.type === 'script' && component.props.type !== 'application/ld+json') && component.key !== 'TypographyStyle' && !(component.type === 'link' && component.props.rel === 'preload' && ['script', 'fetch'].includes(component.props.as)))]);
+    }) : /*#__PURE__*/_react.default.createElement(_react.Fragment, null), ...headComponents.filter(component => component.type !== 'style' && !(component.type === 'script' && component.props.type !== 'application/ld+json') && component.key !== 'TypographyStyle' && !(component.type === 'link' && component.props.rel === 'preload' && ['script', 'fetch'].includes(component.props.as)) && !(component.type === 'noscript'))]);
     replacePreBodyComponents([...preBodyComponents.filter(x => x.key !== 'plugin-google-tagmanager')]);
     replacePostBodyComponents(postBodyComponents.filter(x => x.type !== 'script'));
   } else if (excludedPaths.length > 0 && pathname && excludedPaths.findIndex(_path => minimatch(pathname, _path)) < 0 || includedPaths.length > 0 && pathname && includedPaths.findIndex(_path => minimatch(pathname, _path)) > -1 || excludedPaths.length === 0 && includedPaths.length === 0) {
