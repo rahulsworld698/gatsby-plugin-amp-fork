@@ -105,7 +105,7 @@ export const onPreRenderHTML = (
                     component.key !== 'TypographyStyle' &&
                     !(
                         component.type === 'link' &&
-                        component.props.rel === 'preload' &&
+                        ['preload', 'prefetch'].includes(component.props.rel) &&
                         ['script', 'fetch'].includes(component.props.as)
                     )
             ),
