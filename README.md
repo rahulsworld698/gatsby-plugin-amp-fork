@@ -6,6 +6,10 @@ Formats AMP-specific pages by removing javascript, combining styles and adding b
 
 This plugin is a fork of [gatsby-plugin-amp](https://github.com/jafaircl/gatsby-plugin-amp). This forked version has fixed some critical issue or improvement:
 
+### 10/7/2021
+
+1. Remove prefetch script
+
 ### 12/15/2020
 
 1. When is amp-img, remove disallow attribute `loading`.
