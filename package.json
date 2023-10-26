@@ -1,6 +1,6 @@
 {
     "name": "gatsby-plugin-amp-fork",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "description": "A gatsby plugin for scaffolding AMP pages",
     "main": "index.js",
     "scripts": {
