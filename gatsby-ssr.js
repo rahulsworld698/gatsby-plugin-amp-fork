@@ -64,9 +64,7 @@ const onPreRenderHTML = ({
 
     if (excludedClasses && excludedClasses.length > 0) {
       excludedClasses.forEach(style => {
-        console.log(style);
         styles = styles.replace(style, '');
-        console.log(styles.length);
       });
     }
     /*try {

@@ -1,5 +1,5 @@
 {
-    "name": "gatsby-plugin-amp-fork",
+    "name": "anshuman-gatsby-plugin-amp-fork",
     "version": "1.0.4",
     "description": "A gatsby plugin for scaffolding AMP pages",
     "main": "index.js",
