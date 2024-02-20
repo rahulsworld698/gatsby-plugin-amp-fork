@@ -38,6 +38,7 @@ export const onPreRenderHTML = (
     const headComponents = flattenDeep(getHeadComponents());
     const preBodyComponents = getPreBodyComponents();
     const postBodyComponents = getPostBodyComponents();
+    console.log({postBodyComponents, preBodyComponents, headComponents})
     const isAmp = pathname && pathname.indexOf(pathIdentifier) > -1;
     if (isAmp) {
         let styles = headComponents
@@ -134,7 +135,10 @@ export const onPreRenderHTML = (
             ),
         ]);
         replacePostBodyComponents(
-            postBodyComponents.filter((x) => x.type !== 'script')
+            postBodyComponents.filter((x) => { 
+                console.log("postBodyComponents", {type: x.type})
+                return x.type !== 'script'
+            })
         );
     } else if (
         (excludedPaths.length > 0 &&
@@ -259,6 +263,7 @@ export const replaceRenderer = (
     };
     const headComponents = [];
     const isAmp = pathname && pathname.indexOf(pathIdentifier) > -1;
+    console.log({bodyComponent})
     if (isAmp) {
         const bodyHTML = renderToString(bodyComponent);
         const dom = new JSDOM(bodyHTML);
@@ -435,6 +440,7 @@ export const replaceRenderer = (
 
         // remove twitter and instagram script from amp page
         const scripts = [].slice.call(document.getElementsByTagName('script'));
+        console.log({scripts})
         scripts.forEach((script) => {
             if(script && script.src &&  (script.src == 'https://platform.twitter.com/widgets.js' || script.src == '//www.instagram.com/embed.js')) {
                 script.parentNode.removeChild(script)

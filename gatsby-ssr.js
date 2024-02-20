@@ -47,6 +47,11 @@ const onPreRenderHTML = ({
   const headComponents = (0, _lodash.default)(getHeadComponents());
   const preBodyComponents = getPreBodyComponents();
   const postBodyComponents = getPostBodyComponents();
+  console.log({
+    postBodyComponents,
+    preBodyComponents,
+    headComponents
+  });
   const isAmp = pathname && pathname.indexOf(pathIdentifier) > -1;
 
   if (isAmp) {
@@ -103,7 +108,12 @@ const onPreRenderHTML = ({
       src: "https://cdn.ampproject.org/v0/amp-analytics-0.1.js"
     }) : /*#__PURE__*/_react.default.createElement(_react.Fragment, null), ...headComponents.filter(component => component.type !== 'style' && !(component.type === 'script' && component.props.type !== 'application/ld+json') && component.key !== 'TypographyStyle' && !(component.type === 'link' && ['preload', 'prefetch'].includes(component.props.rel) && ['script', 'fetch'].includes(component.props.as)) && !(component.type === 'noscript'))]);
     replacePreBodyComponents([...preBodyComponents.filter(x => x.key !== 'plugin-google-tagmanager')]);
-    replacePostBodyComponents(postBodyComponents.filter(x => x.type !== 'script'));
+    replacePostBodyComponents(postBodyComponents.filter(x => {
+      console.log("postBodyComponents", {
+        type: x.type
+      });
+      return x.type !== 'script';
+    }));
   } else if (excludedPaths.length > 0 && pathname && excludedPaths.findIndex(_path => minimatch(pathname, _path)) < 0 || includedPaths.length > 0 && pathname && includedPaths.findIndex(_path => minimatch(pathname, _path)) > -1 || excludedPaths.length === 0 && includedPaths.length === 0) {
     replaceHeadComponents([/*#__PURE__*/_react.default.createElement("link", {
       rel: "amphtml",
@@ -199,6 +209,9 @@ const replaceRenderer = ({
   };
   const headComponents = [];
   const isAmp = pathname && pathname.indexOf(pathIdentifier) > -1;
+  console.log({
+    bodyComponent
+  });
 
   if (isAmp) {
     const bodyHTML = (0, _server.renderToString)(bodyComponent);
@@ -364,6 +377,9 @@ const replaceRenderer = ({
     }); // remove twitter and instagram script from amp page
 
     const scripts = [].slice.call(document.getElementsByTagName('script'));
+    console.log({
+      scripts
+    });
     scripts.forEach(script => {
       if (script && script.src && (script.src == 'https://platform.twitter.com/widgets.js' || script.src == '//www.instagram.com/embed.js')) {
         script.parentNode.removeChild(script);
